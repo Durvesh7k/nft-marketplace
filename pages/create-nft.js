@@ -5,8 +5,6 @@ import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 import { useStorageUpload } from "@thirdweb-dev/react"
 
-
-
 import {
     nftMarketAddress
 } from './contractdata/config'
