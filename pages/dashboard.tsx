@@ -7,7 +7,6 @@ import {
     nftMarketAddress
 } from './contractdata/config'
 
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
 interface itemType {
     price: string,
@@ -23,6 +22,9 @@ interface iType {
     seller: string,
     owner: string,
 }
+
+import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+
 
 export default function CreatorDashboard() {
     const [nfts, setNfts] = useState<itemType[]>([])
