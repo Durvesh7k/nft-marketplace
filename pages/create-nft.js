@@ -9,7 +9,7 @@ import {
     nftMarketAddress
 } from './contractdata/config'
 
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from './contractdata/NFTmarketplace.json'
 
 export default function CreateItem() {
     const [fileUrl, setFileUrl] = useState ("")
