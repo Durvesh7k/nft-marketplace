@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 
-import {
-    nftMarketAddress
-} from './contractdata/config'
+import nftMarketAddress from './contractdata/config'
+
 
 
 interface itemType {

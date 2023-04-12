@@ -3,11 +3,9 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 
-import {
-  nftMarketAddress
-} from './contractdata/config'
+import nftMarketAddress from './contractdata/config'
 
-interface itemType{
+interface itemType {
   price: string,
   tokenId: number,
   seller: string,
@@ -17,9 +15,9 @@ interface itemType{
   description: string
 }
 
-interface iType{
+interface iType {
   tokenId: BigNumber,
-  price : BigNumber,
+  price: BigNumber,
   seller: string,
   owner: string,
 }
@@ -38,28 +36,28 @@ export default function Home() {
 
   async function loadNFTs() {
     /* create a generic provider and query for unsold market items */
-    try{
+    try {
       const web3Modal = new Web3Modal()
       const connection = await web3Modal.connect()
       const provider = new ethers.providers.Web3Provider(connection)
       const signer = provider.getSigner()
       const contract = new ethers.Contract(nftMarketAddress, NFTMarketplace.abi, signer)
       const data = await contract.fetchMarketItems()
-  
+
       const address = await signer.getAddress();
-  
+
       setAccount(address)
       console.log(address);
       /*
       *  map over items returned from smart contract and format 
       *  them as well as fetch their token metadata
       */
-      const items: itemType[] = await Promise.all(data.map(async (i : iType)  => {
+      const items: itemType[] = await Promise.all(data.map(async (i: iType) => {
         const tokenUri = await contract.tokenURI(i.tokenId)
         const meta = await axios.get(tokenUri)
         console.log(meta);
         let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-        let item : itemType = {
+        let item: itemType = {
           price,
           tokenId: i.tokenId.toNumber(),
           seller: i.seller,
@@ -71,14 +69,14 @@ export default function Home() {
         return item
       }))
       setNfts(items)
-      setLoadingState('loaded') 
+      setLoadingState('loaded')
 
-    }catch(e){
+    } catch (e) {
       console.log(e);
     }
 
   }
-  async function buyNft(nft : itemType) {
+  async function buyNft(nft: itemType) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
@@ -87,7 +85,7 @@ export default function Home() {
     const contract = new ethers.Contract(nftMarketAddress, NFTMarketplace.abi, signer)
 
     /* user will be prompted to pay the asking proces to complete the transaction */
-    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price
     })

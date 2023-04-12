@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Web3Modal from 'web3modal';
 
-import { nftMarketAddress } from './contractdata/config';
+import nftMarketAddress from './contractdata/config'
 import NFTMarketplace from './contractdata/NFTmarketplace.json'
 
 interface QueryType {
