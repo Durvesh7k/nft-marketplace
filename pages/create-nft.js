@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 import { useStorageUpload } from "@thirdweb-dev/react"
 
-import nftMarketAddress from './contractdata/config'
+import nftMarketAddress from '../config'
 
 
-import NFTMarketplace from './contractdata/NFTmarketplace.json'
+import NFTMarketplace from '../contractdata/NFTmarketplace.json'
 
 export default function CreateItem() {
     const [fileUrl, setFileUrl] = useState ("")

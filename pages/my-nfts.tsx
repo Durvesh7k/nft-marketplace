@@ -4,7 +4,7 @@ import axios from 'axios'
 import Web3Modal from 'web3modal'
 import { useRouter } from 'next/router'
 
-import nftMarketAddress from './contractdata/config'
+import nftMarketAddress from '../config'
 
 
 interface itemType {
@@ -25,7 +25,7 @@ interface iType {
     owner: string,
 }
 
-import NFTMarketplace from './contractdata/NFTmarketplace.json'
+import NFTMarketplace from '../contractdata/NFTmarketplace.json'
 
 export default function Home() {
     const [nfts, setNfts] = useState<itemType[]>([])

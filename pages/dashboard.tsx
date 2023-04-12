@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 
-import nftMarketAddress from './contractdata/config'
+import nftMarketAddress from '../config'
 
 
 
@@ -22,7 +22,7 @@ interface iType {
     owner: string,
 }
 
-import NFTMarketplace from './contractdata/NFTmarketplace.json'
+import NFTMarketplace from '../contractdata/NFTmarketplace.json'
 
 export default function CreatorDashboard() {
     const [nfts, setNfts] = useState<itemType[]>([])
